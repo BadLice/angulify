@@ -1,32 +1,17 @@
-import { inject, Injectable } from '@angular/core';
-import {
-  HttpEvent,
-  HttpHandler,
-  HttpInterceptor,
-  HttpRequest,
-} from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { AuthenticationService } from '../services/authentication.service';
+import axios, { AxiosRequestHeaders } from 'axios';
 
-@Injectable()
-export class AuthenticationInterceptor implements HttpInterceptor {
-  authenticationService = inject(AuthenticationService);
+//TODO: this is definitely not the way to create interceptors, look into it
 
-  constructor() {}
+export const instance = axios.create();
 
-  intercept(
-    request: HttpRequest<unknown>,
-    next: HttpHandler,
-  ): Observable<HttpEvent<unknown>> {
-    const { token, tokenType } = this.authenticationService.getToken();
-    if (token) {
-      request = request.clone({
-        setHeaders: {
-          Authorization: `${tokenType} ${token}`,
-        },
-      });
-    }
+instance.interceptors.request.use((config) => {
+  const token = localStorage.getItem('authenticationToken');
+  const tokenType = localStorage.getItem('authenticationTokenType');
 
-    return next.handle(request);
-  }
-}
+  if (!config.headers) config.headers = {} as AxiosRequestHeaders;
+  config.headers = {
+    ...config.headers,
+    Authorization: `${tokenType} ${token}`,
+  } as AxiosRequestHeaders;
+  return config;
+});

@@ -1,10 +1,19 @@
 import { Injectable } from '@angular/core';
-import { environment } from '../../environments/environment';
+import { environment } from '../../../environments/environment';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthenticationService {
+  isAuthenticated$: BehaviorSubject<boolean>;
+
+  constructor() {
+    this.isAuthenticated$ = new BehaviorSubject<boolean>(false);
+    this.storageListener();
+    window.addEventListener('storage', this.storageListener, false);
+  }
+
   setToken(token: string, tokenType: string) {
     localStorage.setItem('authenticationToken', token);
     localStorage.setItem('authenticationTokenType', tokenType);
@@ -15,6 +24,10 @@ export class AuthenticationService {
     const tokenType = localStorage.getItem('authenticationTokenType');
     if (!token || !tokenType) return {};
     return { token, tokenType };
+  }
+
+  isAuthenticated() {
+    return this.isAuthenticated$;
   }
 
   parseTokenFromUrlFragment(fragment: string) {
@@ -36,5 +49,9 @@ export class AuthenticationService {
     const redirect_uri = 'http://localhost:4200/login';
     const scope = 'user-read-private user-read-email';
     return `https://accounts.spotify.com/authorize?response_type=token&client_id=${encodeURIComponent(environment.clientId)}&scope=${encodeURIComponent(scope)}&redirect_uri=${encodeURIComponent(redirect_uri)}`;
+  }
+
+  private storageListener() {
+    this.isAuthenticated$.next(!!localStorage.getItem('authenticationToken'));
   }
 }
