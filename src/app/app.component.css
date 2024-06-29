@@ -1,0 +1,15 @@
+header {
+  display: flex;
+  padding: 1rem;
+  background-color: darkviolet;
+}
+
+.brand-link {
+  flex-basis: 30%;
+}
+
+.header-actions {
+  display: flex;
+  width: 100%;
+  flex-direction: row-reverse;
+}
