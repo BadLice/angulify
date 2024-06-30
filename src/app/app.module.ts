@@ -5,8 +5,9 @@ import { AppComponent } from './components/app.component';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { UserNavComponent } from './components/user-nav/user-nav.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { MeComponent } from './components/me/me.component';
+import { HeadersInterceptor } from './interceptors/headers.interceptor';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,13 @@ import { MeComponent } from './components/me/me.component';
     MeComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HeadersInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
