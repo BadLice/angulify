@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
   clientId: '',
-  baseUrl: '',
+  baseUrl: 'https://api.spotify.com/v1',
 };
