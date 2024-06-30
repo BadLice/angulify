@@ -3,7 +3,7 @@
         {{ playlist.name }} - {{ playlist.owner.display_name }}
       </span>
   <div *ngIf="playlist.owner.id === me?.id" class="playlist-item-actions">
-    <button>
+    <button (click)="goToPlaylistEdit()">
       Edit
     </button>
   </div>

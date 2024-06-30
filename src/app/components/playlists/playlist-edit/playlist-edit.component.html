@@ -1,0 +1,18 @@
+<section *ngIf="!!playlistForm" class="playlist-edit-section">
+  <h1 *ngIf="showSuccessMessage===true">Successfully edited!</h1>
+  <h1 *ngIf="showSuccessMessage===false">An error occurred</h1>
+  <h1>Edit playlist</h1>
+  <img [ngSrc]="getImageUrl()" alt="me-image" class="me-image" height="300" priority width="300">
+  <form (ngSubmit)="onSubmit()" [formGroup]="playlistForm" class="playlist-edit-form">
+    <label for="name">Name</label>
+    <input formControlName="name" id="name" type="text"/>
+    <label for="description">Description</label>
+    <textarea formControlName="description" id="description"></textarea>
+    <div>
+      <label for="public">Public</label>
+      <input formControlName="public" id="public" type="checkbox">
+    </div>
+    <input type="submit"/>
+  </form>
+  <h1 class="me-name">{{ playlist?.owner?.display_name }}</h1>
+</section>

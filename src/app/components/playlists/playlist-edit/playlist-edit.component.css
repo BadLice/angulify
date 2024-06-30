@@ -1,0 +1,13 @@
+.playlist-edit-section {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.playlist-edit-form {
+  padding-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  align-items: center;
+}

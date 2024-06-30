@@ -4,6 +4,7 @@ import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { MeComponent } from './components/me/me.component';
 import { PlaylistsComponent } from './components/playlists/playlists.component';
+import { PlaylistEditComponent } from './components/playlists/playlist-edit/playlist-edit.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, title: 'Home' },
@@ -21,6 +22,11 @@ const routes: Routes = [
     path: 'playlists',
     component: PlaylistsComponent,
     title: 'Playlists',
+  },
+  {
+    path: 'playlist/:id',
+    component: PlaylistEditComponent,
+    title: 'Edit playlist',
   },
 ];
 

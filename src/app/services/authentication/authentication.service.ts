@@ -50,7 +50,8 @@ export class AuthenticationService {
 
   getAuthRedirectUrl() {
     const redirect_uri = 'http://localhost:4200/login';
-    const scope = 'user-read-private user-read-email';
+    const scope =
+      'user-read-private user-read-email playlist-read-private playlist-read-collaborative playlist-modify-private playlist-modify-public';
     return `https://accounts.spotify.com/authorize?response_type=token&client_id=${encodeURIComponent(environment.clientId)}&scope=${encodeURIComponent(scope)}&redirect_uri=${encodeURIComponent(redirect_uri)}`;
   }
 }

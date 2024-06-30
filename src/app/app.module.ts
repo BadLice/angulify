@@ -12,6 +12,8 @@ import { NgOptimizedImage } from '@angular/common';
 import { SessionExpiredInterceptor } from './interceptors/session-expired.interceptor';
 import { PlaylistsComponent } from './components/playlists/playlists.component';
 import { PlaylistItemComponent } from './components/playlists/playlist-item/playlist-item.component';
+import { PlaylistEditComponent } from './components/playlists/playlist-edit/playlist-edit.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,12 +24,15 @@ import { PlaylistItemComponent } from './components/playlists/playlist-item/play
     MeComponent,
     PlaylistsComponent,
     PlaylistItemComponent,
+    PlaylistEditComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     NgOptimizedImage,
+    ReactiveFormsModule,
+    FormsModule,
   ],
   providers: [
     {
