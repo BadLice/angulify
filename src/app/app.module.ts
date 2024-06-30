@@ -9,6 +9,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { MeComponent } from './components/me/me.component';
 import { HeadersInterceptor } from './interceptors/headers.interceptor';
 import { NgOptimizedImage } from '@angular/common';
+import { SessionExpiredInterceptor } from './interceptors/session-expired.interceptor';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,11 @@ import { NgOptimizedImage } from '@angular/common';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HeadersInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: SessionExpiredInterceptor,
       multi: true,
     },
   ],

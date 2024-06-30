@@ -11,12 +11,11 @@ export class AppComponent {
   isAuthenticated!: boolean;
 
   ngOnInit() {
-    this.authenticationService
-      .isAuthenticated()
-      .subscribe(async (isAuthenticated) => {
-        console.log('=>(app.component.ts:26) isAuthenticated', isAuthenticated);
+    this.authenticationService.isAuthenticated$.subscribe(
+      async (isAuthenticated) => {
         this.isAuthenticated = isAuthenticated;
         if (!isAuthenticated) return;
-      });
+      },
+    );
   }
 }
