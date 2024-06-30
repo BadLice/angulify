@@ -1,18 +1,16 @@
-<main>
-  <header>
-    <a [routerLink]="['/']" class="brand-link">
-      <img alt="logo" aria-hidden="true" class="brand-logo"
-           src="https://developer.spotify.com/images/spotify-for-developers-logo.svg#s4d-logo">
+<header>
+  <a [routerLink]="['/']" class="brand-link">
+    <img alt="logo" aria-hidden="true" class="brand-logo"
+         src="https://developer.spotify.com/images/spotify-for-developers-logo.svg#s4d-logo">
+  </a>
+  <div class="header-actions">
+    <a *ngIf="!isAuthenticated" [href]="authenticationService.getAuthRedirectUrl()"
+       class="login-link" target="_blank">
+      <button>Login</button>
     </a>
-    <div class="header-actions">
-      <a *ngIf="!isAuthenticated" [href]="authenticationService.getAuthRedirectUrl()"
-         class="login-link" target="_blank">
-        <button>Login</button>
-      </a>
-      <user-nav *ngIf="isAuthenticated"/>
-    </div>
-  </header>
-  <section class="content">
-    <router-outlet></router-outlet>
-  </section>
+    <user-nav *ngIf="isAuthenticated"/>
+  </div>
+</header>
+<main class="content">
+  <router-outlet></router-outlet>
 </main>

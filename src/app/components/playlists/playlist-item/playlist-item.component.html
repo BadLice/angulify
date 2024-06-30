@@ -1,0 +1,10 @@
+<li class="playlist-item">
+      <span class="playlist-item-info">
+        {{ playlist.name }} - {{ playlist.owner.display_name }}
+      </span>
+  <div *ngIf="playlist.owner.id === me?.id" class="playlist-item-actions">
+    <button>
+      Edit
+    </button>
+  </div>
+</li>

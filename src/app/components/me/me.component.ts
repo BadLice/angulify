@@ -10,7 +10,6 @@ import { UsersService } from '../../services/users/users.service';
 export class MeComponent {
   me: User | undefined;
   usersService = inject(UsersService);
-  protected readonly JSON = JSON;
 
   ngOnInit() {
     this.usersService.$me.subscribe((me) => (this.me = me));

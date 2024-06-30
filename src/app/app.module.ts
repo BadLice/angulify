@@ -10,6 +10,8 @@ import { MeComponent } from './components/me/me.component';
 import { HeadersInterceptor } from './interceptors/headers.interceptor';
 import { NgOptimizedImage } from '@angular/common';
 import { SessionExpiredInterceptor } from './interceptors/session-expired.interceptor';
+import { PlaylistsComponent } from './components/playlists/playlists.component';
+import { PlaylistItemComponent } from './components/playlists/playlist-item/playlist-item.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,8 @@ import { SessionExpiredInterceptor } from './interceptors/session-expired.interc
     HomeComponent,
     UserNavComponent,
     MeComponent,
+    PlaylistsComponent,
+    PlaylistItemComponent,
   ],
   imports: [
     BrowserModule,

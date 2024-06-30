@@ -1,0 +1,8 @@
+<section class="playlists-section">
+  <h1 class="playlists-title">
+    Playlists
+  </h1>
+  <ul class="playlists-list">
+    <app-playlist-item *ngFor="let playlist of playlists" [me]="me" [playlist]="playlist"/>
+  </ul>
+</section>
