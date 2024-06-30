@@ -1,1 +1,5 @@
-<p>me works! {{ JSON.stringify(me) }}</p>
+<section *ngIf="me" class="me-section">
+  <img [ngSrc]="getImageUrl()" alt="me-image" class="me-image" height="300" width="300">
+  <h1 class="me-name">{{ me.display_name }}</h1>
+  <h1 class="me-name">{{ me.email }}</h1>
+</section>

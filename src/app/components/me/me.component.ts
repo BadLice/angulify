@@ -15,4 +15,11 @@ export class MeComponent {
   ngOnInit() {
     this.usersService.$me.subscribe((me) => (this.me = me));
   }
+
+  getImageUrl() {
+    return (
+      this.me?.images.sort(({ height: a }, { height: b }) => b - a)?.[0]?.url ??
+      ''
+    );
+  }
 }
