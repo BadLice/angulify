@@ -8,10 +8,12 @@ import {
 } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { AuthenticationService } from '../services/authentication/authentication.service';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class SessionExpiredInterceptor implements HttpInterceptor {
   authenticationService = inject(AuthenticationService);
+  private router = inject(Router);
 
   intercept(
     request: HttpRequest<any>,
@@ -19,11 +21,11 @@ export class SessionExpiredInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     return next.handle(request).pipe(
       tap({
-        error: (err: any) => {
+        error: async (err: any) => {
           if (err instanceof HttpErrorResponse) {
             if (err.status === 401) {
               this.authenticationService.clearToken();
-              return;
+              await this.router.navigate(['/']);
             }
           }
         },
